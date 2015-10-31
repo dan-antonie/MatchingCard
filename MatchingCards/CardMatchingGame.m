@@ -13,11 +13,10 @@
 @property (nonatomic,strong) NSMutableArray *chosenCards;
 @end
 @implementation CardMatchingGame
-@synthesize numberOfCardsToMatch;
+@synthesize numberOfCardsToMatch = _numberOfCardsToMatch;
 static const int MISSMATCH_PENALTY=2;
 static const int MATCHBONUS=4;
 static const int COSTTOCHOOSE=1;
-_numberOfCardsToMatch = 3;
 -(NSMutableArray*)chosenCards
 {
     if (!_chosenCards) {
@@ -38,6 +37,11 @@ _numberOfCardsToMatch = 3;
 -(instancetype)initWithCardCount:(NSUInteger *)count andDeck:(Deck *)deck
 {
     self=[super init]; // super's designated initialiser
+    
+    self.numberOfCardsToMatch = 5;
+    _numberOfCardsToMatch = 5;
+    
+
     if (self)
     {
         for (int i =0; i<count; i++) {
@@ -91,6 +95,32 @@ _numberOfCardsToMatch = 3;
     
     int tempScore = [card match:tempArray];
     
+    //cazul general cu n
+    
+    if (tempScore == 0 && [tempArray count] >= 2) {
+        for (int i = 0; i < [tempArray count] - 1; i++) {
+            
+            Card *iCard = [tempArray objectAtIndex:i];
+            for (int j = i + 1; j < [tempArray count]; j++) {
+                Card *jCard = [tempArray objectAtIndex:j];
+                tempScore = [iCard match:[NSArray arrayWithObject:jCard]];
+                if (tempScore > 0) {
+                    break;
+                }
+            }
+        }
+
+    }
+    
+    
+    
+    //cazul particular cu 2
+//    if ([tempArray count] >= 2 && tempScore == 0) {
+//        Card *firstCard = [tempArray firstObject];
+//        Card *secondCard = [tempArray lastObject];
+//        tempScore = [firstCard match:[NSArray arrayWithObject:secondCard]];
+//    }
+//    
     //self.score += tempScore;
     
 
@@ -98,7 +128,7 @@ _numberOfCardsToMatch = 3;
         
         self.score += (tempScore * 4);
 
-        if ([tempArray count] >=2)
+        if ([tempArray count] >=_numberOfCardsToMatch - 1)
         {
             for (Card *aCard in tempArray )
             {
@@ -111,7 +141,7 @@ _numberOfCardsToMatch = 3;
         
     }else
     {
-        if ([tempArray count] >=2) {
+        if ([tempArray count] >=_numberOfCardsToMatch - 1) {
             
             for (Card *aCard in tempArray )
             {
