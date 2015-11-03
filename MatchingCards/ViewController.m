@@ -9,16 +9,11 @@
 #import "ViewController.h"
 #import "PlayingCardDeck.h"
 @interface ViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (strong,nonatomic) CardMatchingGame *game;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gameTypeSegmentedControl;
-@property (nonatomic) NSInteger numberOfCardsToBeMatched;
-@property (weak, nonatomic) IBOutlet UITextView *gameLog;
+
 @end
 
 @implementation ViewController
-- (IBAction)gameTypeSelection:(id)sender
+/*- (IBAction)gameTypeSelection:(id)sender
 {
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
     NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
@@ -32,13 +27,14 @@
         self.numberOfCardsToBeMatched = 3;
     }
 }
-
+*/
 
 
 -(CardMatchingGame*) game{
     if(!_game){
         _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] andDeck:[self createDeck]];
     }
+    _game.numberOfCardsToMatch = 2  ;
     return _game;
 }
 
@@ -52,14 +48,25 @@
 
 - (IBAction)touchCardButton:(UIButton *)sender
 {
+    self.tempCard = [self.game cardAtIndex:1];
+    NSString *tempLog =[[NSString alloc]init];
     int choosenButonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:choosenButonIndex];
     [self updateUI];
     if (self.gameTypeSegmentedControl.enabled == YES) {
         self.gameTypeSegmentedControl.enabled = NO;
     }
-    
+    Card *currentCard = [self.game cardAtIndex:choosenButonIndex];
+    self.gameLog.attributedText =  [self titleForCard:currentCard];
+    if (currentCard.isMatched) self.gameLog.text = @"is matched";
+    if ([currentCard match:[NSArray arrayWithObject:self.tempCard]]) {
+        
+        
+        //self.gameLog.text = [NSString stringWithFormat:@"%@ is mathcing %@",[self titleForCard:currentCard],[self titleForCard:self.tempCard]];
+        
+    }
 
+    self.tempCard = currentCard;
 }
 
 -(void) updateUI
@@ -67,33 +74,44 @@
     for (UIButton *cardButton in self.cardButtons) {
         int buttonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card= [self.game cardAtIndex:buttonIndex];
-        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+
+        [cardButton setAttributedTitle: [self titleForCard:card] forState:UIControlStateNormal];
+  
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
-        self.scoreLabel.text = [NSString stringWithFormat:@"%d",self.game.score];
-        self.gameLog.text = [self titleForCard:card];
-    
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score:%ld",(long)self.game.score];
+        
     }
     
     
     
-    
 }
+
+- (void)makeAllButtonsMultiline
+{
+    for (UIButton *aButton in self.cardButtons) {
+        aButton.titleLabel.numberOfLines = 3;
+    }
+}
+
 - (IBAction)resetGameButton
 {
     self.gameTypeSegmentedControl.enabled = YES;
     _game =[[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] andDeck:[self createDeck]];
+    self.game.numberOfCardsToMatch = 2;
     [self updateUI];
 }
--(NSString*)titleForCard:(Card*) card
+-(NSAttributedString*)titleForCard:(Card*) card
 {
-    return card.isChosen ? card.contents : @"";
+    return card.isChosen ? [[NSAttributedString alloc] initWithString:  card.contents] : [[NSAttributedString alloc] initWithString: @""];
 }
 -(UIImage*)backgroundImageForCard:(Card*)card{
     return [UIImage imageNamed:card.isChosen ? @"cardfront" :@"cardback"];
 }
 - (void)viewDidLoad {
-        [super viewDidLoad];
+    [super viewDidLoad];
+    [self makeAllButtonsMultiline];
+    
      
     // Do any additional setup after loading the view, typically from a nib.
 }

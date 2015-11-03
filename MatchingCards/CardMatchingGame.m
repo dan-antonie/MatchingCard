@@ -10,21 +10,21 @@
 @interface CardMatchingGame()
 @property (nonatomic,readwrite) NSInteger score;
 @property (nonatomic,strong) NSMutableArray *cards; //of Cards
-@property (nonatomic,strong) NSMutableArray *chosenCards;
+//@property (nonatomic,strong) NSMutableArray *chosenCards;
 @end
 @implementation CardMatchingGame
 @synthesize numberOfCardsToMatch = _numberOfCardsToMatch;
 static const int MISSMATCH_PENALTY=2;
 static const int MATCHBONUS=4;
 static const int COSTTOCHOOSE=1;
--(NSMutableArray*)chosenCards
+/*-(NSMutableArray*)chosenCards
 {
     if (!_chosenCards) {
         _chosenCards = [[NSMutableArray alloc]init];
     }
     return _chosenCards;
 
-}
+}*/
 -(NSMutableArray*)cards
 {
     if (!_cards) {
@@ -38,9 +38,7 @@ static const int COSTTOCHOOSE=1;
 {
     self=[super init]; // super's designated initialiser
     
-    self.numberOfCardsToMatch = 5;
-    _numberOfCardsToMatch = 5;
-    
+
 
     if (self)
     {
@@ -150,7 +148,7 @@ static const int COSTTOCHOOSE=1;
                 //daca nu sunt vizibile tre marcate in partea ailalta.
                 aCard.chosen = NO;
             }
-            card.chosen = NO;
+          //  card.chosen = NO;
             self.score -= 2;
         }
     }

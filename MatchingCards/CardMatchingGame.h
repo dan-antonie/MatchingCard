@@ -12,7 +12,7 @@
 -(void)chooseCardAtIndex:(NSUInteger*)index;
 -(Card*) cardAtIndex:(NSUInteger*)index;
 
-// desinated initialiser
+// designated initialiser
 -(instancetype)initWithCardCount:(NSUInteger*)count andDeck:(Deck*) deck;
 @property (nonatomic,readonly) NSInteger score;
 @property (nonatomic) NSInteger numberOfCardsToMatch;
