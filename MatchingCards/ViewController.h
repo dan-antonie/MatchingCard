@@ -17,5 +17,6 @@
 @property (nonatomic) NSInteger numberOfCardsToBeMatched;
 @property (weak, nonatomic) IBOutlet UITextView *gameLog;
 @property (strong,nonatomic) Card *tempCard;
+@property (strong,nonatomic) NSMutableAttributedString *gameHistory;
 @end
 

@@ -49,9 +49,29 @@
         [content appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
         [content appendAttributedString:[[NSAttributedString alloc] initWithString:card.shape]];
     }
+    // setting the color of the content NSmutableAttributedstring
+    UIColor *contentColor = [UIColor redColor];
+    if ([card.color  isEqual: @"yellow"]) {
+        contentColor = [UIColor yellowColor];
+    } else
+        contentColor = [UIColor blueColor];
     
+    // setting the transparency of the shapes
+  
+    if (card.colorTrasparency == 1) {
+        contentColor = [contentColor colorWithAlphaComponent:0.0f];
+    } else if (card.colorTrasparency == 2){
+        contentColor = [contentColor colorWithAlphaComponent:0.5f];
+    }else
+        contentColor = [contentColor colorWithAlphaComponent:1.0f];
+    
+    // settind the atributes of content
+    [content addAttribute:NSForegroundColorAttributeName value:contentColor range:NSMakeRange(0,[content length])];
+    [content addAttribute:NSStrokeWidthAttributeName value:@-3.0 range:NSMakeRange(0, [content length])  ];
+    [content addAttribute:NSStrokeColorAttributeName value:[contentColor colorWithAlphaComponent:1.0f] range:NSMakeRange(0, [content length])];
+
    
-    
+
     return card.isChosen ? content : [[NSAttributedString alloc] initWithString:@""];
 }
 - (void)viewDidLoad {

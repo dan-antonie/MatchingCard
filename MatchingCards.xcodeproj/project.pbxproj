@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A64F2ED31BF399B700BA1FD8 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */; };
+		A64F2ED61BF399F800BA1FD8 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = A64F2ED51BF399F800BA1FD8 /* Grid.m */; };
 		A6E1A2951BD77FF200ED8A24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E1A2941BD77FF200ED8A24 /* main.m */; };
 		A6E1A2981BD77FF200ED8A24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E1A2971BD77FF200ED8A24 /* AppDelegate.m */; };
 		A6E1A29B1BD77FF200ED8A24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E1A29A1BD77FF200ED8A24 /* ViewController.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A64F2ED11BF399B700BA1FD8 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
+		A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
+		A64F2ED41BF399F800BA1FD8 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		A64F2ED51BF399F800BA1FD8 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
 		A6E1A28F1BD77FF200ED8A24 /* MatchingCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchingCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6E1A2931BD77FF200ED8A24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6E1A2941BD77FF200ED8A24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +115,10 @@
 				A6E1A2991BD77FF200ED8A24 /* ViewController.h */,
 				A6E1A29A1BD77FF200ED8A24 /* ViewController.m */,
 				A6E1A29C1BD77FF200ED8A24 /* Main.storyboard */,
+				A64F2ED11BF399B700BA1FD8 /* PlayingCardView.h */,
+				A64F2ED41BF399F800BA1FD8 /* Grid.h */,
+				A64F2ED51BF399F800BA1FD8 /* Grid.m */,
+				A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */,
 				A6FF00A91BE7CC79008226BB /* SetGameViewController.h */,
 				A6FF00AA1BE7CC79008226BB /* SetGameViewController.m */,
 				A6E1A29F1BD77FF200ED8A24 /* Images.xcassets */,
@@ -152,8 +162,8 @@
 				A6FF00A61BE7AF2E008226BB /* SetDeck.h */,
 				A6FF00A71BE7AF2E008226BB /* SetDeck.m */,
 				A6FF00A31BE78F51008226BB /* SetCard.h */,
-				A6FF00A41BE78F51008226BB /* SetCard.m */,
 				A6E1A2C11BD79D4800ED8A24 /* PlayingCardDeck.h */,
+				A6FF00A41BE78F51008226BB /* SetCard.m */,
 				A6E1A2C21BD79D4800ED8A24 /* PlayingCardDeck.m */,
 				A6FBC4631BE28B6E00948483 /* CardMatchingGame.h */,
 				A6FBC4641BE28B6E00948483 /* CardMatchingGame.m */,
@@ -268,7 +278,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64F2ED61BF399F800BA1FD8 /* Grid.m in Sources */,
 				A6FF00AB1BE7CC79008226BB /* SetGameViewController.m in Sources */,
+				A64F2ED31BF399B700BA1FD8 /* PlayingCardView.m in Sources */,
 				A6E1A2C01BD78ED900ED8A24 /* PlayingCard.m in Sources */,
 				A6E1A2BD1BD7848700ED8A24 /* Deck.m in Sources */,
 				A6E1A29B1BD77FF200ED8A24 /* ViewController.m in Sources */,
