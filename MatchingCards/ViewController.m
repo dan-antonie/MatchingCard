@@ -8,35 +8,90 @@
 #import "CardMatchingGame.h"
 #import "ViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCardView.h"
+#import "Grid.h"
 @interface ViewController ()
+@property (strong,nonatomic) NSArray *cardViews;
+@property (weak, nonatomic) IBOutlet UIView *viewWithCards;
+
+@property (nonatomic, strong) Grid *gridulCuCartile;
 
 @end
 
 @implementation ViewController
-/*- (IBAction)gameTypeSelection:(id)sender
-{
-    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
-    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+
+- (IBAction)swipeExecuted:(id)sender {
     
-    if (selectedSegment == 0) {
-        //set the numberOfCardsToBeMatched to 2 cards
-        self.numberOfCardsToBeMatched = 2;
+    UISwipeGestureRecognizer *theSwipe = (UISwipeGestureRecognizer *)sender;
+    CGPoint aPoint = [theSwipe locationInView:self.viewWithCards];
+    PlayingCardView *carteaUndeSaDatSwipe = [self cardWhereSwipeHappend:aPoint];
+    
+    if (carteaUndeSaDatSwipe != nil) {
+        [carteaUndeSaDatSwipe setFaceUp:![carteaUndeSaDatSwipe faceUp]];
     }
-    else{
-        //set the numberOfCardsToBeMatched to 3 cards
-        self.numberOfCardsToBeMatched = 3;
-    }
+    
+    
 }
-*/
+
+- (PlayingCardView *)cardWhereSwipeHappend:(CGPoint )swipeLocationPoint
+{
+    for (PlayingCardView *aView in self.viewWithCards.subviews) {
+        if (aView.frame.origin.x < swipeLocationPoint.x && aView.frame.origin.y < swipeLocationPoint.y && aView.frame.origin.x + aView.frame.size.width > swipeLocationPoint.x && aView.frame.origin.y + aView.frame.size.height >swipeLocationPoint.y) {
+            return aView;
+        }
+
+    }
+    
+
+    return nil;
+}
+
+
+- (void)addCardsForRows:(int)nrOfRows forColumns:(int)nrOfColumns
+{
+    int availableWidthForCard = self.viewWithCards.frame.size.width /nrOfColumns ;
+    int availableHeightForCard = self.viewWithCards.frame.size.height / nrOfRows;
+    
+    
+    for (int i = 0; i < nrOfRows; i++) {
+        for (int j = 0; j < nrOfColumns; j++) {
+
+            
+            PlayingCardView *aCard = [[PlayingCardView alloc] initWithFrame:CGRectMake(availableWidthForCard * j, availableHeightForCard * i, availableWidthForCard, availableHeightForCard)];
+            [self.viewWithCards addSubview:aCard];
+        }
+    }
+    
+    self.gridulCuCartile = [[Grid alloc] init];
+    self.gridulCuCartile.size = CGSizeMake(self.viewWithCards.frame.size.width, self.viewWithCards.frame.size.height);
+    self.gridulCuCartile.minimumNumberOfCells = nrOfRows * nrOfColumns;
+    self.gridulCuCartile.cellAspectRatio = (float)availableWidthForCard/(float)availableHeightForCard;
+    
+    
+    if (self.gridulCuCartile.inputsAreValid) {
+        NSLog(@"Normal ca sunt valide ca abia le desenaram");
+    }else
+    {
+        NSLog(@"Pe aici nu tre sa intre");
+    }
+    
+    
+    
+    
+}
+
 
 
 -(CardMatchingGame*) game{
     if(!_game){
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] andDeck:[self createDeck]];
+        _game = [[CardMatchingGame alloc] initWithCardCount:self.numberOfCardsInPlay andDeck:[self createDeck]];
     }
+    self.numberOfCardsInPlay = 20 ;
     _game.numberOfCardsToMatch = 2  ;
     return _game;
 }
+
+
 
 
 -(Deck*) createDeck
@@ -53,10 +108,7 @@
     int choosenButonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:choosenButonIndex];
     [self updateUI];
-    if (self.gameTypeSegmentedControl.enabled == YES) {
-        self.gameTypeSegmentedControl.enabled = NO;
-    }
-    Card *currentCard = [self.game cardAtIndex:choosenButonIndex];
+        Card *currentCard = [self.game cardAtIndex:choosenButonIndex];
     self.gameLog.attributedText =  [self titleForCard:currentCard];
     if (currentCard.isMatched) self.gameLog.text = @"is matched";
     if ([currentCard match:[NSArray arrayWithObject:self.tempCard]]) {
@@ -96,7 +148,6 @@
 
 - (IBAction)resetGameButton
 {
-    self.gameTypeSegmentedControl.enabled = YES;
     _game =[[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] andDeck:[self createDeck]];
     self.game.numberOfCardsToMatch = 2;
     [self updateUI];
@@ -110,9 +161,25 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self makeAllButtonsMultiline];
+    //[self makeAllButtonsMultiline];
+
+
+    Grid *aGrid = [[Grid alloc] init];
+    aGrid.size = self.viewWithCards.bounds.size;
+    
+//    for (int i = 0; i<self.numberOfCardsInPlay; i++) {
+//        PlayingCardView *aPlayingCardView = [[PlayingCardView alloc ] initWithFrame:[aGrid frameOfCellAtRow:i inColumn:i]];
+//        [self.viewWithCards addSubview:aPlayingCardView];
+//    }
     
      
+     
+    
+    
+    [self addCardsForRows:5 forColumns:3];
+    
+    
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

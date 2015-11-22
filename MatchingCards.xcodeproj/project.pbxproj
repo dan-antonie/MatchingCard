@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A60DAA501BF4D135000A86D5 /* SetCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A60DAA4F1BF4D135000A86D5 /* SetCardView.m */; };
 		A64F2ED31BF399B700BA1FD8 /* PlayingCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */; };
 		A64F2ED61BF399F800BA1FD8 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = A64F2ED51BF399F800BA1FD8 /* Grid.m */; };
 		A6E1A2951BD77FF200ED8A24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E1A2941BD77FF200ED8A24 /* main.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A60DAA4E1BF4D135000A86D5 /* SetCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
+		A60DAA4F1BF4D135000A86D5 /* SetCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCardView.m; sourceTree = "<group>"; };
 		A64F2ED11BF399B700BA1FD8 /* PlayingCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
 		A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCardView.m; sourceTree = "<group>"; };
 		A64F2ED41BF399F800BA1FD8 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
@@ -115,11 +118,13 @@
 				A6E1A2991BD77FF200ED8A24 /* ViewController.h */,
 				A6E1A29A1BD77FF200ED8A24 /* ViewController.m */,
 				A6E1A29C1BD77FF200ED8A24 /* Main.storyboard */,
-				A64F2ED11BF399B700BA1FD8 /* PlayingCardView.h */,
 				A64F2ED41BF399F800BA1FD8 /* Grid.h */,
 				A64F2ED51BF399F800BA1FD8 /* Grid.m */,
+				A64F2ED11BF399B700BA1FD8 /* PlayingCardView.h */,
 				A64F2ED21BF399B700BA1FD8 /* PlayingCardView.m */,
 				A6FF00A91BE7CC79008226BB /* SetGameViewController.h */,
+				A60DAA4E1BF4D135000A86D5 /* SetCardView.h */,
+				A60DAA4F1BF4D135000A86D5 /* SetCardView.m */,
 				A6FF00AA1BE7CC79008226BB /* SetGameViewController.m */,
 				A6E1A29F1BD77FF200ED8A24 /* Images.xcassets */,
 				A6E1A2A11BD77FF200ED8A24 /* LaunchScreen.xib */,
@@ -283,6 +288,7 @@
 				A64F2ED31BF399B700BA1FD8 /* PlayingCardView.m in Sources */,
 				A6E1A2C01BD78ED900ED8A24 /* PlayingCard.m in Sources */,
 				A6E1A2BD1BD7848700ED8A24 /* Deck.m in Sources */,
+				A60DAA501BF4D135000A86D5 /* SetCardView.m in Sources */,
 				A6E1A29B1BD77FF200ED8A24 /* ViewController.m in Sources */,
 				A6E1A2981BD77FF200ED8A24 /* AppDelegate.m in Sources */,
 				A6FBC4651BE28B6E00948483 /* CardMatchingGame.m in Sources */,
